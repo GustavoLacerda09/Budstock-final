@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        /* estilo para todos o botões */
+        button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 18px;
+          margin: 15px auto;
+          border: none;
+          cursor: pointer;
+          width: auto;
+        }
+        /* estilo para o botão de fechar */
+        .close{
+        position: absolute;
+        top: 0;
+        right: 14px;
+        font-size: 42px;
+        cursor: pointer;
+        }
+        
+        /* estilo para o botão de confirmação*/
+        .bt{
+        
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 18px;
+          margin: 15px auto;
+          border: none;
+          cursor: pointer;
+          width: auto;
+        
+        }
+        
+        
+        
+        /* estilo extra para o botão de cancelamento */
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+        
+        
+        .container {
+          padding: 16px;
+        }
+        
+        /* background */
+        .modal {
+          width:100%;
+            height:100%;
+            background-color:rgba(0, 0, 0,0.7);
+            opacity:0.7;
+            top:0;
+            position: absolute;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            display:none;
+        }
+        
+        /* conteudo da caixa */
+        .modal-content {
+          width: 500px;
+            height:300px;
+            background-color: white;
+            border-radius: 4px;
+            text-align: center;
+            position: relative;
+        }
+      </style>
+
+	<head>
+		<title>Budstock-fim</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sessao_fim.css') }}">
+	</head>
+
+    <header> <img src="{{ url_for('static', filename='buda.PNG') }}" width="50" alt="Buda" title="Buda">
+
+        <h1>BUDSTOCK</h1>
+
+    </header>
+
+        <body>
+            <div id="background">
+                    <div class="col-md-8">
+                          {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                              {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                  {{ message }}
+                                </div>
+                              {% endfor %}
+                            {% endif %}
+                          {% endwith %}
+                    </div>
+
+                <h2>Relatório : {{estoque}}</h2>
+                <h3>Receita :R${{receita}}</h3>
+                <h4>Produtos vendidos:</h4>
+                <h5>Hora da venda: {{hora_ini}}     Hora_Fim : {{hora_fim}}</h5>
+
+
+                <table>
+                    <th  id="numero">Numero:</th>
+                    <th  id="nome">Nome:</th>
+                    <th  id="preco">Preço:</th>
+                    <th id="quantidade">Quantidade:</th>
+
+                    {% for li in li_li %}
+                  <tr>
+                        {% for valor in li %}
+                    <td id="dados">{{valor}}</td>
+                        {% endfor %}
+                  </tr>
+                     {% endfor %}
+                </table>
+                {% if pagina %}
+                <form action=""  method="POST">
+                    <input type="submit"id="nao_salvar" value="Descartar Relatório " name="nao_salvar" >
+                    <input id="salvar" type="submit" name="salvar" value="Salvar Relatorio">
+                    <input type="hidden" name="nome_estoque" value="{{estoque}}">
+                </form>
+                <div class="modal" id="myForm" method="POST" >
+                  <form class="modal-content" action=" ">
+                    <div class="close" onclick="closeForm()">&times;</div>
+                    <h2>Deseja realmente descartar o relatório?</h2>
+                
+                    <input type="submit" name="notsave" onclick="closeForm()" value="Sim" class="bt"/>
+                    <button type="button" name="no" class= "cancelbtn"onclick="closeForm()">Não</button>
+                  </form>
+                </div>
+                {% endif %}
+                <script>
+                  function openForm() {
+                      document.getElementById("myForm").style.display = "flex";
+                    }
+                    
+                    function closeForm() {
+                      document.getElementById("myForm").style.display = "none";
+                    }
+              </script>
+                
+            </div>
+        </body>
+
+                <footer>
+                    <p id="fale">fale conosco</p>
+
+                    <p id="link1"><a href="https://web.facebook.com/budstock.buda.1" title="página Budstock">Budstock no Facebook</a></p>
+                    <p id="link2">email:budstock0000@gmail.com</p>
+                    <p id="link3">telefone: 4002-8922 </p>
+			    </footer>
+
+</html>

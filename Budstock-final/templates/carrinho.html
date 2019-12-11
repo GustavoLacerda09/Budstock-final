@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Budstock-carrinho</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='carrinho.css') }}">
+	</head>
+
+    <header> <img src="{{ url_for('static', filename='buda.PNG') }}" width="50" alt="Buda" title="Buda">
+
+        <h1>BUDSTOCK</h1>
+
+    </header>
+
+    <body>
+
+        <div id="background">
+                <div class="col-md-8">
+                      {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                          {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                              {{ message }}
+                            </div>
+                          {% endfor %}
+                        {% endif %}
+                      {% endwith %}
+                </div>
+                
+                <div class="modal"  id="myForm">
+
+                        <form action="/carrinho"method='POST' class="modal-content">
+                          <div class="close" onclick="closeForm()">&times;</div>
+                          <h4>Deseja realmente excluir o carrinho?</h4>
+                      
+                          <input type="submit" onclick="closeForm()"name="cancel" value="Sim" class="bt"/>
+                          <button type="button" name="no" onclick="closeForm()">Não</button>
+                          <input type="hidden" name="nome_estoque" value="{{estoque}}">
+                        </form>
+                </div>
+                <div class="modal" id="myForm2">
+                        <form action="/carrinho" method="POST" class="modal-content">
+                          <div class="close" onclick="closeForm2()">&times;</div>
+                          <h4>Deseja confirmar a venda?</h4>
+                      
+                          <input type="submit" form="atualizar" name="confirmar" value="Sim" class="bt"/>
+                          <button type="button" name="no" class="cancelbtn" onclick="closeForm2()">Não</button>
+                          <input type="hidden" name="nome_estoque" value="{{estoque}}">
+                        </form>
+                </div>
+
+                <script>
+                    function openForm() {
+                        document.getElementById("myForm").style.display = "flex";
+                      }
+                      function openForm2() {
+                        document.getElementById("myForm2").style.display = "flex";
+                      }
+                      
+                      function closeForm() {
+                        document.getElementById("myForm").style.display = "none";
+                      }
+                      function closeForm2() {
+                        document.getElementById("myForm2").style.display = "none";
+                      }
+                </script>
+                    
+
+            <h2><p>Estoque : {{estoque}}</p></h2>
+            <h3><p>Total : {{subtotal}}</p></h3>
+
+            <form action="/carrinho" id="atualizar" method="POST">
+                <table>
+                    <tr>
+                        <th>Numero:</th>
+                        <th>Nome:</th>
+                        <th>Preço:</th>
+                        <th>Quantidade:</th>
+                    </tr>
+                    {% for dic in li_dic %}
+                    <tr>
+
+                        {% for cod, valor in dic.items() %}
+                        <td><input type="text" id={{cod}} name={{cod}}  value={{valor}} readonly></td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+
+
+                <input id="alterar" type="submit" name="alterar" value="Alterar">
+                <input type="hidden" name="nome_estoque" value="{{estoque}}">
+            </form>
+
+            <input id="cancelar" type="submit" name="cancelar" value="Cancelar" onclick="openForm()">
+            <input id="confirmar" type="submit" name="confirmar" value="Confirmar" onclick="openForm2()">
+
+        </div>
+    </body>
+
+
+    			<footer>
+                    <p id="fale">fale conosco</p>
+
+                    <p id="link1"><a href="https://web.facebook.com/budstock.buda.1" title="página Budstock">Budstock no Facebook</a></p>
+                    <p id="link2">email:budstock0000@gmail.com</p>
+                    <p id="link3">telefone: 4002-8922 </p>
+			    </footer>
+
+
+</html>

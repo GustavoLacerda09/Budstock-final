@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Budstock</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="Budstock-estoque.css">
+
+
+	</head>
+
+
+	
+		<body>
+
+	<header> <img src="buda.png" width="50" alt="Buda" title="Buda">
+
+		<h1>BUDSTOCK</h1>
+
+	</header>
+		<div id="fundo"></div>
+
+			<h2>Estoque: </h2>
+				<input type="submit" name="add" value="+" id="button" title="adicionar estoque">
+
+	<table>
+	    <thead>
+	        <tr>
+	            <th id="codigo-t">código</th>
+	            <th id="preco-t">preço</th>
+	            <th id="quantidade-t">quantidade</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <input type="text" name="codigo" id="codigo1" size="5" maxlength="8"><br>
+	            <input type="text" name="preco" id="preco1" size="5" maxlength="8"><br>
+	            <input type="text" name="quantidade" id="quantidade1" size="5" maxlength="6"><br>
+	            <input type="submit" name="qtd+1" value="+" id="add-q1" title="adicionar quantidade" onclick="process(1)" >
+	            <input type="submit" name="qtd-1" value="-" id="sub-q1" title="subtrair quantidade" onclick="process(-1)" >
+	        </tr>
+	        <tr>
+	            <input type="text" name="codigo" id="codigo2" size="5" maxlength="8"><br>
+	            <input type="text" name="preco" id="preco2" size="5" maxlength="8"><br>
+	            <input type="text" name="quantidade" id="quantidade2" size="5" maxlength="6"><br>
+	            <input type="submit" name="qtd+1" value="+" id="add-q2" title="adicionar quantidade" onclick="process(1)" >
+	            <input type="submit" name="qtd-1" value="-" id="sub-q2" title="subtrair quantidade" onclick="process(-1)" >
+	        </tr>
+	        <tr>
+	            <input type="text" name="codigo" id="codigo3" size="5" maxlength="8"><br>
+	            <input type="text" name="preco" id="preco3" size="5" maxlength="6"><br>
+	            <input type="text" name="quantidade" id="quantidade3" size="5" maxlength="8"><br>
+	            <input type="submit" name="qtd+1" value="+" id="add-q3" title="adicionar quantidade" onclick="process(1)" >
+	            <input type="submit" name="qtd-1" value="-" id="sub-q3" title="subtrair quantidade" onclick="process(-1)" >
+	        </tr>
+	    </tbody>
+
+	</table>
+
+		
+
+
+
+
+
+
+			<footer>
+				<p id="fale">fale conosco</p>
+
+				<p id="link1"><a href="https://web.facebook.com/budstock.buda.1" title="página Budstock">Budstock no Facebook</a></p>
+				<p id="link2">email:budstock0000@gmail.com</p>
+				<p id="link3">telefone: 4002-8922 </p>
+			</footer>
+
+
+		</body>
+	
+</html>

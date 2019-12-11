@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Budstock</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='relatorio_css.css') }}">
+	</head>
+
+
+        <h1>Relatório : {{estoque}}</h1>
+
+        <h2>Receita : {{receita}}</h2>
+
+        <h3>Hora_Ini : {{hora_ini}}     Hora_Fim : {{hora_fim}}</h3>
+
+        <h4>Produtos vendidos:</h4>
+
+        <div class="col-md-8">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+        </div>
+        <div class="modal" id="myForm">
+            <form action="" class="modal-content" method="POST">
+              <div class="close" onclick="closeForm()">&times;</div>
+              <h2>Deseja realmente excluir o relatório?</h2>
+
+              <input type="submit" form="myForm2" name="delete" value="sim" class="bt"/>
+              <button type="button" name="no" class="cancelbtn" onclick="closeForm()">Não</button>
+            </form>
+          </div>
+        <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "flex";
+          }
+
+          function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+          }
+        </script>
+        <table>
+            <tr>
+                <th width="80">Numero:</th>
+                <th width="80">Nome:</th>
+                <th width="80">Preço:</th>
+                <th width="80">Quantidade:</th>
+            </tr>
+            {% for li in li_li %}
+          <tr>
+                {% for valor in li %}
+            <td>{{valor}}</td>
+                {% endfor %}
+          </tr>
+             {% endfor %}
+        </table>
+
+        <form action="/relatorio" id="myForm2" method="POST">
+        <input id="voltar" type="submit" name="voltar" value="Voltar">
+        <input id="baixar" type="submit" name="baixar" value="Baixar PDF">
+        <button id="deletar" type="button" name="deletar" value="Apagar Relatorio" onclick="openForm()">Apagar Relatorio</button>
+        <input type="hidden" name="nome_estoque" value="{{estoque}}">
+        <input type="hidden" name="estoque_num" value="{{estoque_num}}">
+        <input type="hidden" name="hora_ini" value="{{hora_ini}}">
+
+        </form>
+
+</html>
